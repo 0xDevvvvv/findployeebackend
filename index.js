@@ -1,11 +1,13 @@
 const express = require('express');
 const {getPrompt} = require('./prompt')
-
+const cors = require('cors');
 // Create an instance of Express
 const app = express();
 
 // Define the port
 const PORT = process.env.PORT || 8000;
+
+app.use(cors());
 app.use(express.json());
 // Create a basic route
 app.post('/', (req, res) => {
