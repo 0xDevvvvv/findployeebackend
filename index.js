@@ -1,4 +1,5 @@
 const express = require('express');
+const {getPrompt} = require('./prompt')
 
 // Create an instance of Express
 const app = express();
@@ -11,9 +12,9 @@ app.post('/', (req, res) => {
   try {
     // Convert JSON body to a string
     const values = Object.values(req.body);
+    const result = getPrompt(values).then((response) => res.send(`${response}`));
 
     // Send the values array as a response
-    res.send(`Received values: ${values.join(', ')}`);
   } catch (error) {
     // Handle any potential errors
     res.status(400).send('Invalid JSON');
